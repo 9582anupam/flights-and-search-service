@@ -24,3 +24,9 @@
 and then execute
 
 `npx sequelize db:migrate`
+
+## DB Design
+  - Airplane Table
+  - Flight
+  - Airport
+  - City
