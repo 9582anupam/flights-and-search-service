@@ -7,31 +7,34 @@ class CityService {
 
     async createCity(data) {
         try {
-            const city = await this.cityRepository.create(data);
+            const city = await this.cityRepository.createCity(data);
             return city;
         }
         catch (error) {
-            console.log(error)
+            console.log(error);
+            throw {error};
         }
     }
 
     async deleteCity(cityId) {
         try {
-            const city = await this.cityRepository.delete(cityId);
+            const city = await this.cityRepository.deleteCity(cityId);
             return city;
         }
         catch (error) {
-            console.log(error)
+            console.log(error);
+            throw {error};
         }
     }
 
     async updateCity(cityId, data) {
         try {
-            const city = await this.cityRepository.update(cityId, data);
+            const city = await this.cityRepository.updateCity(cityId, data);
             return city;
         }
         catch (error) {
-            console.log(error)
+            console.log(error);
+            throw {error};
         }
     }
 
@@ -41,7 +44,8 @@ class CityService {
             return city;
         }
         catch (error) {
-            console.log(error)
+            console.log(error);
+            throw {error};
         }
     }
 }
