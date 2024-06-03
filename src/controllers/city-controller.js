@@ -56,7 +56,7 @@ const update = async (req, res) => {
     }
     catch (error) {
         console.log(error)
-        return res.response(500).json({
+        return res.status(500).json({
             data : {},
             success : false,
             message : "Not able to update city",
