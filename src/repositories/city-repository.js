@@ -1,5 +1,5 @@
-const { City } = require("../models/index")
-
+const { City } = require("../models/index");
+const { Op } = require("sequelize");
 
 class CityRepository {
     async createCity ( { name } ) {
@@ -8,7 +8,7 @@ class CityRepository {
             return city;
         }
         catch (error) {
-            console.log(error);
+            console.log("Error in Repository layer");
             throw {error};
         }
     }
@@ -24,7 +24,7 @@ class CityRepository {
             return city;
         }
         catch (error) {
-            console.log(error);
+            console.log("Error in Repository layer");
             throw {error};
         }
     }
@@ -43,7 +43,7 @@ class CityRepository {
             return city; 
         }
         catch (error) {
-            console.log(error);
+            console.log("Error in Repository layer");
             throw {error};
         }
     }
@@ -54,19 +54,42 @@ class CityRepository {
             return city;
         }
         catch (error) {
-            console.log(error);
+            console.log("Error in Repository layer");
             throw {error};
         }
     }
 
-    async allCity() {
+    // async allCity() {
+    //     try {
+    //         const city = await City.findAll();
+    //         return city;
+    //     }
+    //     catch (error) {
+    //         console.log("Error in Repository layer");
+    //         throw(error);
+    //     }
+    // }
+    // NO NEED ANYMORE AS IT IS CLUBBED BELOW WITH STARTS WUTH PARAMETER IN ELSE CODITION
+
+    async allCity(filter) {
         try {
-            const city = await City.findAll();
-            return city;
+            if (filter.name) { // if filter exist else return all
+                const cities = await City.findAll({
+                    where : {
+                        name : {
+                            [Op.startsWith] : filter.name
+                        }
+                    }
+                })
+                return cities;
+            } else {
+                const city = await City.findAll();
+                return city;    
+            }
         }
         catch (error) {
-            console.log(error);
-            throw(error);
+            console.log("Error in Repository layer");
+            throw (error)
         }
     }
 }
