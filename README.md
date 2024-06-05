@@ -30,3 +30,9 @@ and then execute
   - Flight
   - Airport
   - City
+
+## Tables
+
+### City -> id, name, created_at, updated_at
+### Airport -> id, name, Address, city_id, created_at, updated_at
+        One City has many Airports and Airport belongs to a city (one to many relation)
